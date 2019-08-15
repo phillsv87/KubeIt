@@ -1,4 +1,6 @@
 {
+    "baseName":"exstuff",
+    "apiDbName":"Exstuff",
     "resGroup":"_Example_KubeGroup",
     "acrName":"_Example_Containers",
     "clusterResGroup":"MC__Example_KubeGroup__Example_Kube_centralus",
