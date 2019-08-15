@@ -5,6 +5,8 @@ param (
     [string]$location
 )
 
+#Sku types: Standard_LRS,Premium_LRS,StandardSSD_LRS,UltraSSD_LRS
+
 if(!$name -or !$sizeGB){
     throw "name and sizeGB required"
 }
