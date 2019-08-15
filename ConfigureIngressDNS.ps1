@@ -6,7 +6,7 @@ if(!$dnsName){
     throw "-dnsName required"
 }
 
-$config=Get-Content "$PSScriptRoot/config.json" | ConvertFrom-json
+$config=&$PSScriptRoot/GetConfig.ps1
 
 if(!$config.publicIP){
     throw "config.publicIP required"

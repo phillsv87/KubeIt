@@ -1,4 +1,4 @@
-$config=Get-Content "$PSScriptRoot/config.json" | ConvertFrom-json
+$config=&$PSScriptRoot/GetConfig.ps1
 
 $AKS_RESOURCE_GROUP=$config.resGroup
 $AKS_CLUSTER_NAME=$config.clusterName

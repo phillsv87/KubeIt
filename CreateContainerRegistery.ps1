@@ -2,6 +2,6 @@ param(
     $name
 )
 
-$config=Get-Content "$PSScriptRoot/config.json" | ConvertFrom-json
+$config=&$PSScriptRoot/GetConfig.ps1
 
 az acr create --resource-group $config.resGroup --name $name --sku Basic

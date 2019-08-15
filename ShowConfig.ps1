@@ -1,2 +1,2 @@
-$config=& $PSScriptRoot/GetConfig.ps1
+$config=&$PSScriptRoot/GetConfig.ps1
 $config

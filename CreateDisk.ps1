@@ -9,7 +9,7 @@ if(!$name -or !$sizeGB){
     throw "name and sizeGB required"
 }
 
-$config=Get-Content "$PSScriptRoot/config.json" | ConvertFrom-json
+$config=&$PSScriptRoot/GetConfig.ps1
 
 if(!$location){
     $location=$config.location

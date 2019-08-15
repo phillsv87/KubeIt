@@ -6,7 +6,7 @@ if(!$name){
     throw "-name required"
 }
 
-$config=Get-Content "$PSScriptRoot/config.json" | ConvertFrom-json
+$config=&$PSScriptRoot/GetConfig.ps1
 
 az network public-ip create `
     --resource-group $config.clusterResGroup `
