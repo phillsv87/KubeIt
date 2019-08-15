@@ -2,11 +2,15 @@ param(
     [string]$dnsName
 )
 
+$config=&$PSScriptRoot/GetConfig.ps1
+
+if(!$dnsName){
+    $dnsName="$($config.baseName)-ingress"
+}
+
 if(!$dnsName){
     throw "-dnsName required"
 }
-
-$config=&$PSScriptRoot/GetConfig.ps1
 
 if(!$config.publicIP){
     throw "config.publicIP required"

@@ -7,5 +7,8 @@
     "clusterName":"_Example_Kube",
     "location":"centralus",
     "containerRegId":"/subscriptions/00000000-0000-0000-0000-00000000/resourceGroups/_Example_KubeGroup/providers/Microsoft.ContainerRegistry/registries/_Example_Containers",
-    "publicIP":"1.2.3.4"
+    "publicIP":"1.2.3.4",
+    "adminEmail":"example@example.com",
+    "apiImage":"example.azurecr.io/someapi:v1",
+    "sqlDataDisk":"/subscriptions/00000000-0000-0000-0000-00000000/resourceGroups/MC_Examlple_centralus/providers/Microsoft.Compute/disks/sqldata"
 }

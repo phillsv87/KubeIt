@@ -1,5 +1,10 @@
 param(
-    [string]$tmpl=(throw "-tmpl required ")
+    [string]$tmpl=(throw "-tmpl required "),
+    [switch]$tmp,
+    [switch]$kubeApply,
+    [switch]$kubeDelete,
+    [switch]$outParent,
+    [string]$out
 )
 
 $ErrorActionPreference="Stop"
@@ -26,6 +31,43 @@ $args | ForEach-Object {
     }
 }
 
+if($kubeApply -or $kubeDelete -or $outParent -or $out){
+    $tmp=$true
+}
+
 $config=&$PSScriptRoot/GetConfig.ps1
 $templateContent=Get-Content $templatePath -Raw
-$ExecutionContext.InvokeCommand.ExpandString($templateContent)
+if($tmp){
+    $filePath=$null
+    if($out){
+        $tmpDir=$null
+        $filePath=$out
+    }elseif($outParent){
+        $tmpDir="$PSScriptRoot/.."
+    }else{
+        $tmpDir="$PSScriptRoot/tmp"
+    }
+    if($tmpDir -and !(Test-Path $tmpDir)){
+        mkdir $tmpDir | Out-Null
+    }
+    if(!$filePath){
+        $filePath="$tmpDir/$($tmpl).yml"
+    }
+    $ExecutionContext.InvokeCommand.ExpandString($templateContent) | Out-File -FilePath $filePath
+
+    if($kubeApply){
+        kubectl apply -f $filePath
+        if(!$?){
+            "kubectl apply -f $filePath FAILED"
+        }
+    }elseif($kubeDelete){
+        kubectl delete -f $filePath
+        if(!$?){
+            "kubectl delete -f $filePath FAILED"
+        }
+    }else{
+        return $filePath
+    }
+}else{
+    $ExecutionContext.InvokeCommand.ExpandString($templateContent)
+}
