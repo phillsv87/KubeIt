@@ -5,3 +5,6 @@ if(!$config.acrName){
 }
 
 az acr login --name $config.acrName
+if(!$?){
+    throw "ACR login failed"
+}
