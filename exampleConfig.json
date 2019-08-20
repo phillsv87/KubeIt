@@ -10,5 +10,8 @@
     "publicIP":"1.2.3.4",
     "adminEmail":"example@example.com",
     "apiImage":"example.azurecr.io/someapi:v1",
-    "sqlDataDisk":"/subscriptions/00000000-0000-0000-0000-00000000/resourceGroups/MC_Examlple_centralus/providers/Microsoft.Compute/disks/sqldata"
+    "sqlDataDisk":"/subscriptions/00000000-0000-0000-0000-00000000/resourceGroups/MC_Examlple_centralus/providers/Microsoft.Compute/disks/sqldata",
+    "storageAccountName":"somestorage",
+    "storageAccountShareName":"shomeshare",
+    "storageAccountKey":"key-hash"
 }
