@@ -1,7 +1,7 @@
 param(
     [string]$name=$(throw "-name required"),
-    [int]$storageAccountName=$(throw "-storageAccountName required"),
-    [string]$shareName=$(throw "-shareName required")
+    [string]$storageAccountName=$(throw "-storageAccountName required"),
+    [string]$shareName=$(throw "-shareName required"),
     [int]$sizeGB=$(throw "-sizeGB requirede")
 )
 
@@ -9,4 +9,5 @@ param(
     -sizeGB $sizeGB `
     -storageAccountName $storageAccountName `
     -shareName $shareName `
+    -name $name `
     -out "$PSScriptRoot/../$($name)-pv.yml"
