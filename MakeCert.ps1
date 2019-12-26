@@ -1,14 +1,23 @@
+#!/usr/local/bin/pwsh
 param(
-    [switch]$prod,
+    [switch]$staging,
     [string]$domain=$(throw "-domain required"),
-    [string]$name=$(throw "-name required")
+    [string]$namespace=$(throw "-namespace required")
 )
 
 
-if($prod){
-    $type='letsencrypt-prod'
-}else{
+if($staging){
     $type='letsencrypt-staging'
+}else{
+    $type='letsencrypt-prod'
 }
 
-& $PSScriptRoot/TextTemplate.ps1 -tmpl cert -out "$PSScriptRoot/../cert-$($domain).yml" -domain $domain -type $type -name $name
+$name=$domain.Replace(".","-")
+$path="$PSScriptRoot/../cert-$namespace-$name.yml"
+
+& $PSScriptRoot/TextTemplate.ps1 -tmpl cert -out $path `
+    -name "cert-$name" `
+    -namespace $namespace `
+    -issuerNamespace letsencrypt `
+    -domain $domain `
+    -type $type

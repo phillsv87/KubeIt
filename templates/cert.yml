@@ -1,9 +1,10 @@
-apiVersion: certmanager.k8s.io/v1alpha1
+apiVersion: cert-manager.io/v1alpha2
 kind: Certificate
 metadata:
-  name: tls-secret-$($vars.name)
+  name: $($vars.name)
+  namespace: $($vars.namespace)
 spec:
-  secretName: tls-secret-$($vars.name)
+  secretName: $($vars.name)
   dnsNames:
   - $($vars.domain)
   acme:
@@ -14,4 +15,5 @@ spec:
       - $($vars.domain)
   issuerRef:
     name: $($vars.type)
+    namespace: $($vars.issuerNamespace)
     kind: ClusterIssuer
