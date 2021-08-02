@@ -1,5 +1,5 @@
 param(
-    [string]$dnsName,
+    [string]$dnsName
 )
 
 $config=&$PSScriptRoot/GetConfig.ps1
@@ -16,4 +16,4 @@ if(!$ip){
     throw "config.publicIP or -ip required"
 }
 
-&$PSScriptRoot/ConfigureIpDNS.ps1 -dnsName=$dnsName -ip=$ip
+&$PSScriptRoot/ConfigureIpDNS.ps1 -dnsName $dnsName -ip $ip
